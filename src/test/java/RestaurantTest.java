@@ -2,12 +2,16 @@
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
     Restaurant restaurant;
     //REFACTOR ALL THE REPEATED LINES OF CODE
+
+    List<Item>spoof = new ArrayList<Item>();  //used for getting dummy input(s).
 
 
     public void restaurantParameters(){
@@ -69,4 +73,26 @@ class RestaurantTest {
                 ()->restaurant.removeFromMenu("French fries"));
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //>>>>>>>>>>>>>>>>>>>>ORDER VALUE<<<<<<<<<<<<<<<<<<<<<<<<<
+    @Test
+    public void order_value_should_get_increasing_by_successive_additions_of_food_items_on_menu(){
+
+        restaurantParameters();
+        spoof = restaurant.getMenu();
+        assertEquals(388,restaurant.getOrderValue(spoof)); //getOrderValue = Total of all the selected ietms on Menu 
+
+    }
+
+    @Test
+    public void order_value_should_get_decreased_when_removal_of_food_items_is_done_on_menu_from_selected_options(){
+
+        restaurantParameters();
+        spoof = restaurant.getMenu();
+        int total = restaurant.getOrderValue(spoof);
+        int afterTotal = spoof.get(1).getPrice();   //getPrice = value of single food item
+        spoof.remove(1);
+        assertEquals(total-afterTotal,restaurant.getOrderValue(spoof));
+    }
+    //<<<<<<<<<<<<<<<<<<<ORDER VALUE>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
