@@ -80,7 +80,7 @@ class RestaurantTest {
 
         restaurantParameters();
         spoof = restaurant.getMenu();
-        assertEquals(388,restaurant.getOrderValue(spoof)); //getOrderValue = Total of all the selected ietms on Menu 
+        assertEquals(388,restaurant.getOrderValue(spoof)); //getOrderValue = Total of all the selected ietms on Menu
 
     }
 
