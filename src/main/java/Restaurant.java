@@ -1,4 +1,5 @@
 
+
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -80,6 +81,15 @@ public class Restaurant {
 
     public String getName() {
         return name;
+    }
+
+    public int getOrderValue(List<Item>selectedItems){
+        int actualTotalValue = 0;
+        for (Item item : selectedItems){
+            actualTotalValue += item.getPrice();
+        }
+        return actualTotalValue;
+
     }
 
 }
